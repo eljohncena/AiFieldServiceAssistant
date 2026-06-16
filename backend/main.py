@@ -1,7 +1,15 @@
 from fastapi import FastAPI
-
+from pathlib import Path
+import pandas as pd
 app = FastAPI()
 
+dataFile = Path(__file__).parent.parent / "data" / "work_orders.csv"
+
+def loadWorkOrders() -> list[dict]:
+    df = pd.read_csv(dataFile)
+    workOrders = df.to_dict(orient="records")
+
+    return workOrders
 @app.get("/")
 def home():
     return {"message": "Hello World"}
@@ -12,4 +20,4 @@ def health_check():
 
 @app.get("/work-orders")
 def work_orders():
-    return {"message": "Hello Work Orders"}
+    return loadWorkOrders()
