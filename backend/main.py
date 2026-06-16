@@ -23,12 +23,28 @@ def calculateDueDate(created_date: str, priority: str) ->str:
     dueDate = created + slaDuration
     return dueDate.strftime(dateFormat)
 
+def calculateSla(status: str, dueDate: str) -> str:
+    if status == "Closed":
+        return "Closed"
+    now = datetime.now()
+    due = datetime.strptime(dueDate, dateFormat)
+    timeUntilDue = due - now
+
+    if now > due:
+        return "Overdue"
+
+    if timeUntilDue <= timedelta(hours=24):
+        return "Due Soon"
+    return "On Track"
+
 def loadWorkOrders() -> list[dict]:
     df = pd.read_csv(dataFile)
     workOrders = df.to_dict(orient="records")
 
     for workOrder in workOrders:
-        workOrder["dueDate"] = calculateDueDate(workOrder["created_date"],workOrder["priority"])
+        dueDate = calculateDueDate(workOrder["created_date"], workOrder["priority"])
+        workOrder["due_date"] = dueDate
+        workOrder["sla"] = calculateSla(workOrder["status"], dueDate)
 
     return workOrders
 @app.get("/")
