@@ -47,6 +47,47 @@ def loadWorkOrders() -> list[dict]:
         workOrder["sla"] = calculateSla(workOrder["status"], dueDate)
 
     return workOrders
+
+def buildDashboardSummary() -> dict:
+    work_orders = loadWorkOrders()
+    totalWorkOrders = len(work_orders)
+    openWorkOrders = 0
+    inProgressWorkOrders = 0
+    closedWorkOrders = 0
+    overdueWorkOrders = 0
+    dueSoonWorkOrders = 0
+    safetyEscalation = 0
+    p1Orders = 0
+
+    for workOrder in work_orders:
+        if workOrder["status"] == "Open":
+            openWorkOrders += 1
+        if workOrder["status"] == "In Progress":
+            inProgressWorkOrders += 1
+        if workOrder["status"] == "Closed":
+            closedWorkOrders += 1
+        if workOrder["sla"] == "Overdue":
+            overdueWorkOrders += 1
+        if workOrder["sla"] == "Due Soon":
+            dueSoonWorkOrders += 1
+        if workOrder["priority"] == "P1":
+            p1Orders += 1
+        if workOrder["safety_escalation"] == "Yes":
+            safetyEscalation += 1
+
+        return {
+
+            "total_work_orders": totalWorkOrders,
+            "open_work_orders": openWorkOrders,
+            "in_progress_work_orders": inProgressWorkOrders,
+            "closed_work_orders": closedWorkOrders,
+            "overdue_work_orders": overdueWorkOrders,
+            "due_soon_work_orders": dueSoonWorkOrders,
+            "safety_escalation": safetyEscalation,
+            "p1_orders": p1Orders,
+
+        }
+
 @app.get("/")
 def home():
     return {"message": "Hello World"}
@@ -58,3 +99,7 @@ def health_check():
 @app.get("/work-orders")
 def work_orders():
     return loadWorkOrders()
+
+@app.get("/dashboard")
+def dashboard():
+    return buildDashboardSummary()
