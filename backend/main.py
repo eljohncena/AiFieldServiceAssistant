@@ -7,6 +7,8 @@ app = FastAPI()
 
 
 dataFile = Path(__file__).parent.parent / "data" / "work_orders.csv"
+technicianFile = Path(__file__).parent.parent / "data" / "technicians.csv"
+
 dateFormat = "%Y-%m-%d %H:%M"
 
 # SLA rules for different priorities.
@@ -145,6 +147,7 @@ def work_orders(
 def dashboard():
     return buildDashboardSummary()
 
+# End point to display a specific work order.
 @app.get("/work-orders/{work_order_id}")
 def get_work_order(work_order_id: str):
     work_orders = loadWorkOrders()
@@ -155,3 +158,19 @@ def get_work_order(work_order_id: str):
 
     return {"error": "Work order not found"}
 
+
+# End point to display all technicians.
+@app.get("/technicians")
+def get_technicians():
+    df = pd.read_csv(technicianFile)
+    return df.to_dict(orient="records")
+
+#Display a specific technician.
+@app.get("/technicians/{technician_id}")
+def get_technician(technician_id: int):
+    technicians = get_technicians()
+
+    for technician in technicians:
+        if technician["technician_id"] == technician_id:
+            return technician
+    return {"error": "Technician not found"}
