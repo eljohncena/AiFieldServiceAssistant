@@ -1,13 +1,15 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Query
 from pathlib import Path
 from datetime import datetime, timedelta
 
 import pandas as pd
 app = FastAPI()
 
+
 dataFile = Path(__file__).parent.parent / "data" / "work_orders.csv"
 dateFormat = "%Y-%m-%d %H:%M"
 
+# SLA rules for different priorities.
 slaRules = {
     "P1": timedelta(hours=4),
     "P2": timedelta(hours=24),
@@ -17,12 +19,14 @@ slaRules = {
     "P6": timedelta(days=60),
     }
 
+# Function to calculate the due date based on the priority.
 def calculateDueDate(created_date: str, priority: str) ->str:
     created = datetime.strptime(created_date, dateFormat)
     slaDuration = slaRules[priority]
     dueDate = created + slaDuration
     return dueDate.strftime(dateFormat)
 
+# Function to calculate the SLA status.
 def calculateSla(status: str, dueDate: str) -> str:
     if status == "Closed":
         return "Closed"
@@ -37,6 +41,7 @@ def calculateSla(status: str, dueDate: str) -> str:
         return "Due Soon"
     return "On Track"
 
+# Function to load all work orders from the csv file.
 def loadWorkOrders() -> list[dict]:
     df = pd.read_csv(dataFile)
     workOrders = df.to_dict(orient="records")
@@ -48,6 +53,7 @@ def loadWorkOrders() -> list[dict]:
 
     return workOrders
 
+# Function to build the dashboard summary.
 def buildDashboardSummary() -> dict:
     work_orders = loadWorkOrders()
     totalWorkOrders = len(work_orders)
@@ -75,31 +81,65 @@ def buildDashboardSummary() -> dict:
         if workOrder["safety_escalation"] == "Yes":
             safetyEscalation += 1
 
-        return {
+    return {
 
-            "total_work_orders": totalWorkOrders,
-            "open_work_orders": openWorkOrders,
-            "in_progress_work_orders": inProgressWorkOrders,
-            "closed_work_orders": closedWorkOrders,
-            "overdue_work_orders": overdueWorkOrders,
-            "due_soon_work_orders": dueSoonWorkOrders,
-            "safety_escalation": safetyEscalation,
-            "p1_orders": p1Orders,
+        "total_work_orders": totalWorkOrders,
+        "open_work_orders": openWorkOrders,
+        "in_progress_work_orders": inProgressWorkOrders,
+        "closed_work_orders": closedWorkOrders,
+        "overdue_work_orders": overdueWorkOrders,
+        "due_soon_work_orders": dueSoonWorkOrders,
+        "safety_escalation": safetyEscalation,
+        "p1_orders": p1Orders,
 
-        }
+    }
 
+# End point to display the home page.
 @app.get("/")
 def home():
     return {"message": "Hello World"}
 
+# End point to check the health of the application.
 @app.get("/health")
 def health_check():
     return {"status": "ok"}
 
-@app.get("/work-orders")
-def work_orders():
-    return loadWorkOrders()
 
+# End point to display all work orders.
+@app.get("/work-orders")
+
+# Query parameters to filter the work orders.
+def work_orders(
+    status: str | None = Query(default=None),
+    priority: str | None = Query(defualt=None),
+    location: str | None = Query(defualt=None),
+    technician: str | None = Query(defualt=None),
+    sla: str | None = Query(defualt=None),
+    safety_escalation: str | None = Query(defualt=None),
+):
+    workOrders = loadWorkOrders()  #loads all work orders from csv, then filters. Will switch to a database later.
+
+    if status:
+        workOrders = [workOrder for workOrder in workOrders if workOrder["status"].lower() == status.lower()]
+
+    if priority:
+        workOrders = [workOrder for workOrder in workOrders if workOrder["priority"].lower() == priority.lower()]
+
+    if location:
+        workOrders = [workOrder for workOrder in workOrders if workOrder["location"].lower() == location.lower()]
+
+    if technician:
+        workOrders = [workOrder for workOrder in workOrders if workOrder["technician"].lower() == technician.lower()]
+
+    if sla:
+        workOrders = [workOrder for workOrder in workOrders if workOrder["sla"].lower() == sla.lower()]
+
+    if safety_escalation:
+        workOrders = [workOrder for workOrder in workOrders if workOrder["safety_escalation"].lower() == safety_escalation.lower()]
+
+    return workOrders
+
+# End point to display the dashboard summary.
 @app.get("/dashboard")
 def dashboard():
     return buildDashboardSummary()
