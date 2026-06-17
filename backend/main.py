@@ -111,14 +111,15 @@ def health_check():
 # Query parameters to filter the work orders.
 def work_orders(
     status: str | None = Query(default=None),
-    priority: str | None = Query(defualt=None),
-    location: str | None = Query(defualt=None),
-    technician: str | None = Query(defualt=None),
-    sla: str | None = Query(defualt=None),
-    safety_escalation: str | None = Query(defualt=None),
+    priority: str | None = Query(default=None),
+    location: str | None = Query(default=None),
+    technician: str | None = Query(default=None),
+    sla: str | None = Query(default=None),
+    safety_escalation: str | None = Query(default=None),
 ):
     workOrders = loadWorkOrders()  #loads all work orders from csv, then filters. Will switch to a database later.
 
+    # Filters will only run if the user provides a value. e.g., /work-orders?status=Open&priority=P1&location=Raleigh
     if status:
         workOrders = [workOrder for workOrder in workOrders if workOrder["status"].lower() == status.lower()]
 
@@ -143,3 +144,14 @@ def work_orders(
 @app.get("/dashboard")
 def dashboard():
     return buildDashboardSummary()
+
+@app.get("/work-orders/{work_order_id}")
+def get_work_order(work_order_id: str):
+    work_orders = loadWorkOrders()
+
+    for work_order in work_orders:
+        if work_order["work_order_id"].lower() == work_order_id.lower():
+            return work_order
+
+    return {"error": "Work order not found"}
+
