@@ -128,11 +128,12 @@ def work_orders(
     if priority:
         workOrders = [workOrder for workOrder in workOrders if workOrder["priority"].lower() == priority.lower()]
 
+    # Filter allows for partial matches; location can be "Raleigh" or "Raleigh, NC" location.lower is what user enters.
     if location:
-        workOrders = [workOrder for workOrder in workOrders if workOrder["location"].lower() == location.lower()]
+        workOrders = [workOrder for workOrder in workOrders if location.lower() in workOrder["location"].lower()]
 
     if technician:
-        workOrders = [workOrder for workOrder in workOrders if workOrder["technician"].lower() == technician.lower()]
+        workOrders = [workOrder for workOrder in workOrders if technician.lower() in workOrder["technician"].lower()]
 
     if sla:
         workOrders = [workOrder for workOrder in workOrders if workOrder["sla"].lower() == sla.lower()]

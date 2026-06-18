@@ -1,25 +1,25 @@
-technician,home_location,region,skills,max_miles,max_daily_orders,available_today,technician_id
-Carlos Reyes,San Diego CA,California,Transformer;Substation;Battery,100,4,Yes,1
-Maya Chen,Los Angeles CA,California,Battery;Generator;Backup Power,100,4,Yes,2
-Evan Brooks,Oakland CA,California,Network;HVAC;Access Control,100,4,Yes,3
-Lena Ortiz,Sacramento CA,California,Generator;Inspection;Safety,100,4,Yes,4
-Owen Miller,Denver CO,Colorado,Generator;Network;Substation,100,4,Yes,5
-Harper Scott,Boulder CO,Colorado,Server Room;Access Control;Voltage,100,4,Yes,6
-Jordan Patel,Phoenix AZ,Arizona,Substation;Panel;Fiber,100,4,Yes,7
-Ariana Lopez,Tempe AZ,Arizona,Meter;Panel;Antenna,100,4,Yes,8
-Noah Kim,Las Vegas NV,Nevada,Fiber;Relay;Network,100,4,Yes,9
-Sienna Wright,Henderson NV,Nevada,Battery;UPS;Backup Power,100,4,Yes,10
-Luke Turner,Reno NV,Nevada,Generator;Access Control;Cooling,100,4,Yes,11
-Grace Hall,Salt Lake City UT,Utah,Voltage;Substation;Fiber,100,4,Yes,12
-Eli Morgan,Provo UT,Utah,Meter;Gateway;Emergency Lighting,100,4,Yes,13
-Sofia Bennett,Miami FL,Florida,Generator;Network;Controller,100,4,Yes,14
-Daniel Rivera,Tampa FL,Florida,HVAC;Battery;Generator,100,4,Yes,15
-Miles Carter,Jacksonville FL,Florida,Security Panel;Communication;Access Control,100,4,Yes,16
-Amelia Brooks,New York NY,New York,Generator;Inspection;Access Control,100,4,Yes,17
-Isaac Cohen,Brooklyn NY,New York,Server Room;Backup Power;Humidity,100,4,Yes,18
-Naomi Price,Atlanta GA,Georgia,Substation;Battery;Network,100,4,Yes,19
-Caleb Foster,Marietta GA,Georgia,Generator;Battery;Inspection,100,4,Yes,20
-Tyler Reed,Savannah GA,Georgia,Fiber;Emergency Lighting;Signal,100,4,Yes,21
-Chris Morgan,Raleigh NC,North Carolina,Transformer;Access Control;SCADA,100,4,Yes,22
-Nina Patel,Durham NC,North Carolina,Control Panel;HVAC;Labeling,100,4,Yes,23
-Alex Rivera,Charlotte NC,North Carolina,Generator;Transfer Switch;Inspection,100,4,Yes,24
+technician_id,technician,home_location,region,skills,max_miles,max_daily_orders,available_today,home_lat,home_lng
+1,Carlos Reyes,San Diego CA,California,Transformer;Substation;Battery,100,4,Yes,32.7157,-117.1611
+2,Maya Torres,Los Angeles CA,California,Battery;Generator;Backup Power,100,4,Yes,34.0522,-118.2437
+3,Marcus Lee,Oakland CA,California,Network;HVAC;Access Control,100,4,Yes,37.8044,-122.2712
+4,Lena Ortiz,Sacramento CA,California,Generator;Inspection;Safety,100,4,Yes,38.5816,-121.4944
+5,Owen Miller,Denver CO,Colorado,Generator;Network;Substation,100,4,Yes,39.7392,-104.9903
+6,Harper Scott,Boulder CO,Colorado,Server Room;Access Control;Voltage,100,4,Yes,40.0150,-105.2705
+7,Jordan Patel,Phoenix AZ,Arizona,Substation;Panel;Fiber,100,4,Yes,33.4484,-112.0740
+8,Ariana Lopez,Tempe AZ,Arizona,Meter;Panel;Antenna,100,4,Yes,33.4255,-111.9400
+9,Kai Morgan,Las Vegas NV,Nevada,Fiber;Relay;Network,100,4,Yes,36.1716,-115.1391
+10,Sienna Wright,Henderson NV,Nevada,Battery;UPS;Backup Power,100,4,Yes,36.0395,-114.9817
+11,Luke Turner,Reno NV,Nevada,Generator;Access Control;Cooling,100,4,Yes,39.5296,-119.8138
+12,Grace Hall,Salt Lake City UT,Utah,Voltage;Substation;Fiber,100,4,Yes,40.7608,-111.8910
+13,Eli Morgan,Provo UT,Utah,Meter;Gateway;Emergency Lighting,100,4,Yes,40.2338,-111.6585
+14,Sofia Bennett,Miami FL,Florida,Generator;Network;Controller,100,4,Yes,25.7617,-80.1918
+15,Victor Ramos,Tampa FL,Florida,HVAC;Battery;Generator,100,4,Yes,27.9506,-82.4572
+16,Miles Carter,Jacksonville FL,Florida,Security Panel;Communication;Access Control,100,4,Yes,30.3322,-81.6557
+17,Amelia Brooks,New York NY,New York,Generator;Inspection;Access Control,100,4,Yes,40.7128,-74.0060
+18,Isaac Cohen,Brooklyn NY,New York,Server Room;Backup Power;Humidity,100,4,Yes,40.6782,-73.9442
+19,Naomi Price,Atlanta GA,Georgia,Substation;Battery;Network,100,4,Yes,33.7490,-84.3880
+20,Caleb Foster,Marietta GA,Georgia,Generator;Battery;Inspection,100,4,Yes,33.9526,-84.5499
+21,Tyler Reed,Savannah GA,Georgia,Fiber;Emergency Lighting;Signal,100,4,Yes,32.0809,-81.0912
+22,Chris Morgan,Raleigh NC,North Carolina,Transformer;Access Control;SCADA,100,4,Yes,35.7796,-78.6382
+23,Nina Patel,Durham NC,North Carolina,Control Panel;HVAC;Labeling,100,4,Yes,35.9940,-78.8986
+24,Alex Rivera,Charlotte NC,North Carolina,Generator;Transfer Switch;Inspection,100,4,Yes,35.2271,-80.8431
