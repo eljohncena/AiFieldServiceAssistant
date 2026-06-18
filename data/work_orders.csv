@@ -1,4 +1,4 @@
-work_order_id,customer,site_id,city,state,issue,technician,status,priority,created_date,safety_escalation,notes,estimated_duration
+work_order_id,customer,site_id,city,state,issue,technician,status,priority,created_date,safety_escalation,notes,estimated_hours
 1001,Fake Energy Company,001,San Diego,CA,Transformer inspection,Carlos Reyes,Open,P1,2026-06-08 08:00,Yes,Customer reported overheating near panel,3
 1002,Fake Energy Company,002,Los Angeles,CA,Battery replacement,Maya Torres,In Progress,P2,2026-06-07 09:00,No,Parts ordered and awaiting delivery,2
 1003,Fake Energy Company,003,San Jose,CA,Network rack repair,Marcus Lee,Open,P3,2026-06-05 10:30,Yes,Site access requires manager approval,2

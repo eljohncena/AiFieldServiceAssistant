@@ -26,11 +26,13 @@ class Site(Base):
 
     assignments = relationship("Assignment", back_populates="site")
 
-class WorkOrders(Base):
+class WorkOrder(Base):
     __tablename__ = "work_orders"
     id = Column(Integer, primary_key=True, index=True)
     work_order_id = Column(String, unique=True, index=True)
-    site_id = Column(String, foreign_key="sites.site_id")
+    site_id = Column(String, ForeignKey("sites.site_id"))
+    customer = Column(String)
+    due_date = Column(String)
     city = Column(String)
     state = Column(String)
     issue = Column(String)
@@ -41,15 +43,15 @@ class WorkOrders(Base):
     created_date = Column(String)
     notes = Column(String)
     safety_escalation = Column(String)
-    estimated_duration = Column(String)
+    estimated_hours = Column(Float)
 
 class Assignment(Base):
     __tablename__ = "assignments"
 
     id = Column(Integer, primary_key=True, index=True)
-    technician_id = Column(Integer, ForeignKey("technicians.id"))
-    site_id = Column(Integer, ForeignKey("sites.id"))
-    work_order_id = Column(Integer, ForeignKey("work_orders.id"))
+    technician_id = Column(String, ForeignKey("technicians.id"))
+    site_id = Column(String, ForeignKey("sites.id"))
+    work_order_id = Column(String, ForeignKey("work_orders.id"))
     status = Column(String, default="Scheduled")
     scheduled_date = Column(String)
 
