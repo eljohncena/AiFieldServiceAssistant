@@ -2,7 +2,12 @@ from fastapi import FastAPI, Query
 from pathlib import Path
 from datetime import datetime, timedelta
 
+from database import engine
+from models import Base
+
 import pandas as pd
+
+Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
 

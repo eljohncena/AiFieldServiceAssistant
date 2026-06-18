@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from pathlib import Path
-from sqlalchemy.orm import sessionmaker, declarative_base
+from sqlalchemy.orm import sessionmaker, DeclarativeBase
 
 # places database in project root
 baseDir = Path(__file__).parent.parent
@@ -14,7 +14,7 @@ sessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
 #This will tell SQLAchemy to track all tables
-class Base(declarative_base):
+class Base(DeclarativeBase):
     pass
 
 # dependency function to get a database session. FastAPI will call this function when it needs a database session. Only one thread at a time.
