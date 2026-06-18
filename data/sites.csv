@@ -1,0 +1,61 @@
+site_id,site_name,site_type,city,state,site_lat,site_lng
+001,Costco Business Center,Warehouse Retail,San Diego,CA,32.7720,-117.1570
+002,Walmart Supercenter,Retail,Los Angeles,CA,34.0650,-118.2380
+003,Sam's Club,Warehouse Retail,San Jose,CA,37.3382,-121.8863
+004,Costco Wholesale,Warehouse Retail,Sacramento,CA,38.6426,-121.4908
+005,Chevron Service Station,Gas Station,Oakland,CA,37.8049,-122.2950
+006,Walmart Supercenter,Retail,Denver,CO,39.7790,-104.9580
+007,Costco Wholesale,Warehouse Retail,Boulder,CO,40.0240,-105.2510
+008,Sam's Club,Warehouse Retail,Colorado Springs,CO,38.8339,-104.8214
+009,King Soopers Fuel Center,Gas Station,Fort Collins,CO,40.5853,-105.0844
+010,Target Distribution Site,Distribution,Aurora,CO,39.7294,-104.8319
+011,Costco Wholesale,Warehouse Retail,Phoenix,AZ,33.4665,-112.2210
+012,Walmart Supercenter,Retail,Tempe,AZ,33.4070,-111.9260
+013,Chevron Service Station,Gas Station,Scottsdale,AZ,33.4942,-111.9261
+014,Sam's Club,Warehouse Retail,Mesa,AZ,33.4152,-111.8315
+015,Target Retail Center,Retail,Chandler,AZ,33.3062,-111.8413
+016,Costco Business Center,Warehouse Retail,Las Vegas,NV,36.1440,-115.1740
+017,Walmart Supercenter,Retail,Henderson,NV,36.0617,-115.0376
+018,Sam's Club,Warehouse Retail,North Las Vegas,NV,36.1989,-115.1175
+019,Chevron Service Station,Gas Station,Reno,NV,39.5299,-119.8010
+020,Costco Wholesale,Warehouse Retail,Sparks,NV,39.5349,-119.7527
+021,Costco Wholesale,Warehouse Retail,Salt Lake City,UT,40.7410,-111.9390
+022,Walmart Supercenter,Retail,Provo,UT,40.2520,-111.6600
+023,Sam's Club,Warehouse Retail,Ogden,UT,41.2230,-111.9738
+024,Maverik Fuel Station,Gas Station,West Valley City,UT,40.6916,-112.0011
+025,Target Retail Center,Retail,Sandy,UT,40.5649,-111.8389
+026,Costco Wholesale,Warehouse Retail,Miami,FL,25.7820,-80.3380
+027,Walmart Supercenter,Retail,Fort Lauderdale,FL,26.1224,-80.1373
+028,Sam's Club,Warehouse Retail,Orlando,FL,28.5383,-81.3792
+029,Chevron Service Station,Gas Station,Tampa,FL,27.9600,-82.4570
+030,Target Retail Center,Retail,Jacksonville,FL,30.3328,-81.6556
+031,Costco Wholesale,Warehouse Retail,New York,NY,40.7851,-73.9683
+032,Sam's Club,Warehouse Retail,Brooklyn,NY,40.6500,-73.9496
+033,Walmart Neighborhood Market,Retail,Queens,NY,40.7282,-73.7949
+034,BP Service Station,Gas Station,Bronx,NY,40.8448,-73.8648
+035,Target Retail Center,Retail,Yonkers,NY,40.9312,-73.8988
+036,Costco Wholesale,Warehouse Retail,Atlanta,GA,33.8463,-84.3620
+037,Walmart Supercenter,Retail,Marietta,GA,33.9528,-84.5500
+038,Sam's Club,Warehouse Retail,Alpharetta,GA,34.0754,-84.2941
+039,Chevron Service Station,Gas Station,Savannah,GA,32.0809,-81.0912
+040,Target Retail Center,Retail,Augusta,GA,33.4735,-82.0105
+041,Costco Wholesale,Warehouse Retail,Raleigh,NC,35.8390,-78.6780
+042,Sam's Club,Warehouse Retail,Durham,NC,35.9940,-78.8986
+043,Walmart Supercenter,Retail,Cary,NC,35.7915,-78.7811
+044,Target Retail Center,Retail,Charlotte,NC,35.2271,-80.8431
+045,Sheetz Fuel Station,Gas Station,Greensboro,NC,36.0726,-79.7920
+046,Walmart Supercenter,Retail,San Diego,CA,32.7500,-117.1600
+047,Costco Wholesale,Warehouse Retail,Los Angeles,CA,34.0407,-118.2468
+048,Sam's Club,Warehouse Retail,Denver,CO,39.7400,-104.9800
+049,Chevron Service Station,Gas Station,Phoenix,AZ,33.4484,-112.0740
+050,Costco Wholesale,Warehouse Retail,Las Vegas,NV,36.1699,-115.1398
+051,Walmart Supercenter,Retail,Salt Lake City,UT,40.7608,-111.8910
+052,Shell Service Station,Gas Station,Miami,FL,25.7617,-80.1918
+053,Target Retail Center,Retail,New York,NY,40.7580,-73.9855
+054,Sam's Club,Warehouse Retail,Atlanta,GA,33.7490,-84.3880
+055,Walmart Supercenter,Retail,Raleigh,NC,35.7796,-78.6382
+056,Costco Wholesale,Warehouse Retail,Oakland,CA,37.8044,-122.2712
+057,King Soopers Fuel Center,Gas Station,Boulder,CO,40.0150,-105.2705
+058,Target Retail Center,Retail,Tempe,AZ,33.4255,-111.9400
+059,Costco Wholesale,Warehouse Retail,Tampa,FL,27.9506,-82.4572
+060,Sam's Club,Warehouse Retail,Durham,NC,35.9940,-78.8986

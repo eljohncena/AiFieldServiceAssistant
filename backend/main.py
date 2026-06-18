@@ -43,9 +43,9 @@ def calculateSla(status: str, dueDate: str) -> str:
         return "Due Soon"
     return "On Track"
 
-# Function to load all work orders from the csv file.
+# Function to load all work orders from the csv file. Force pandas to read work_order_id and site_id as str
 def loadWorkOrders() -> list[dict]:
-    df = pd.read_csv(dataFile)
+    df = pd.read_csv(dataFile, dtype={"work_order_id": str, "site_id": str})
     workOrders = df.to_dict(orient="records")
 
     for workOrder in workOrders:
@@ -114,10 +114,12 @@ def health_check():
 def work_orders(
     status: str | None = Query(default=None),
     priority: str | None = Query(default=None),
-    location: str | None = Query(default=None),
+    city: str | None = Query(default=None),
+    state: str | None = Query(default=None),
     technician: str | None = Query(default=None),
     sla: str | None = Query(default=None),
     safety_escalation: str | None = Query(default=None),
+    site_id: str | None = Query(default=None),
 ):
     workOrders = loadWorkOrders()  #loads all work orders from csv, then filters. Will switch to a database later.
 
@@ -128,9 +130,11 @@ def work_orders(
     if priority:
         workOrders = [workOrder for workOrder in workOrders if workOrder["priority"].lower() == priority.lower()]
 
-    # Filter allows for partial matches; location can be "Raleigh" or "Raleigh, NC" location.lower is what user enters.
-    if location:
-        workOrders = [workOrder for workOrder in workOrders if location.lower() in workOrder["location"].lower()]
+    # Filter by technician, city and state with partial match
+    if city:
+        workOrders = [workOrder for workOrder in workOrders if city.lower() in workOrder["city"].lower()]
+    if state:
+        workOrders = [workOrder for workOrder in workOrders if state.lower() in workOrder["state"].lower()]
 
     if technician:
         workOrders = [workOrder for workOrder in workOrders if technician.lower() in workOrder["technician"].lower()]
@@ -140,6 +144,9 @@ def work_orders(
 
     if safety_escalation:
         workOrders = [workOrder for workOrder in workOrders if workOrder["safety_escalation"].lower() == safety_escalation.lower()]
+
+    if site_id:
+        workOrders = [workOrder for workOrder in workOrders if site_id.strip().lower() in str(workOrder["site_id"]).strip().lower()]
 
     return workOrders
 

@@ -1,61 +1,61 @@
-work_order_id,customer,location,site_name,site_type,site_lat,site_lng,issue,technician,status,priority,created_date,safety_escalation,notes
-WO-1001,Fake Energy Company,San Diego CA,Costco Business Center,Warehouse Retail,32.7720,-117.1570,Transformer inspection,Carlos Reyes,Open,P1,2026-06-08 08:00,Yes,Customer reported overheating near panel
-WO-1002,Fake Energy Company,Los Angeles CA,Walmart Supercenter,Retail,34.0650,-118.2380,Battery replacement,Maya Torres,In Progress,P2,2026-06-07 09:00,No,Parts ordered and awaiting delivery
-WO-1003,Fake Energy Company,San Jose CA,Sam's Club,Warehouse Retail,37.3382,-121.8863,Network rack repair,Marcus Lee,Open,P3,2026-06-05 10:30,Yes,Site access requires manager approval
-WO-1004,Fake Energy Company,Sacramento CA,Costco Wholesale,Warehouse Retail,38.6426,-121.4908,Generator inspection,Lena Ortiz,Closed,P4,2026-06-01 13:00,No,Inspection completed successfully
-WO-1005,Fake Energy Company,Oakland CA,Chevron Service Station,Gas Station,37.8049,-122.2950,HVAC sensor issue,Marcus Lee,Open,P5,2026-06-09 11:00,No,Technician scheduled for Friday
-WO-1006,Fake Energy Company,Denver CO,Walmart Supercenter,Retail,39.7790,-104.9580,Backup power alarm,Owen Miller,In Progress,P1,2026-06-06 14:00,Yes,Alarm triggered twice during overnight shift
-WO-1007,Fake Energy Company,Boulder CO,Costco Wholesale,Warehouse Retail,40.0240,-105.2510,Server room temperature alert,Harper Scott,Open,P2,2026-06-10 07:30,Yes,Temperature exceeded threshold for 30 minutes
-WO-1008,Fake Energy Company,Colorado Springs CO,Sam's Club,Warehouse Retail,38.8339,-104.8214,POS terminal outage,Owen Miller,Closed,P6,2026-06-03 15:00,No,Terminal replaced and verified
-WO-1009,Fake Energy Company,Fort Collins CO,King Soopers Fuel Center,Gas Station,40.5853,-105.0844,Access control panel issue,Harper Scott,Open,P4,2026-06-09 08:45,No,Security badge reader intermittently failing
-WO-1010,Fake Energy Company,Aurora CO,Target Distribution Site,Distribution,39.7294,-104.8319,Network switch replacement,Owen Miller,In Progress,P3,2026-06-04 16:00,Yes,Replacement switch staged but change window pending
-WO-1011,Fake Energy Company,Phoenix AZ,Costco Wholesale,Warehouse Retail,33.4665,-112.2210,Substation alarm validation,Jordan Patel,Open,P1,2026-06-11 06:00,Yes,Alarm requires same-day field validation
-WO-1012,Fake Energy Company,Tempe AZ,Walmart Supercenter,Retail,33.4070,-111.9260,Meter communication failure,Ariana Lopez,Open,P5,2026-06-02 09:15,No,Meter stopped reporting interval data
-WO-1013,Fake Energy Company,Scottsdale AZ,Chevron Service Station,Gas Station,33.4942,-111.9261,Fiber handoff inspection,Jordan Patel,In Progress,P2,2026-06-08 12:00,No,Provider requested verification before cutover
-WO-1014,Fake Energy Company,Mesa AZ,Sam's Club,Warehouse Retail,33.4152,-111.8315,Panel labeling correction,Ariana Lopez,Open,P6,2026-06-01 10:00,No,Labels need to match updated site drawings
-WO-1015,Fake Energy Company,Chandler AZ,Target Retail Center,Retail,33.3062,-111.8413,Emergency lighting test,Jordan Patel,Open,P4,2026-06-07 13:30,Yes,Lighting failed during monthly safety check
-WO-1016,Fake Energy Company,Las Vegas NV,Costco Business Center,Warehouse Retail,36.1440,-115.1740,Relay cabinet inspection,Kai Morgan,Open,P2,2026-06-12 08:00,No,Relay cabinet requires post-storm inspection
-WO-1017,Fake Energy Company,Henderson NV,Walmart Supercenter,Retail,36.0617,-115.0376,Battery cabinet alarm,Sienna Wright,In Progress,P1,2026-06-12 09:30,Yes,Battery cabinet alarm reported by site contact
-WO-1018,Fake Energy Company,North Las Vegas NV,Sam's Club,Warehouse Retail,36.1989,-115.1175,Fiber splice validation,Kai Morgan,Open,P3,2026-06-13 10:00,No,Validation needed after provider maintenance window
-WO-1019,Fake Energy Company,Reno NV,Chevron Service Station,Gas Station,39.5299,-119.8010,Generator coolant warning,Luke Turner,Open,P4,2026-06-14 11:00,Yes,Coolant warning displayed during routine check
-WO-1020,Fake Energy Company,Sparks NV,Costco Wholesale,Warehouse Retail,39.5349,-119.7527,Access badge reader outage,Luke Turner,Closed,P5,2026-06-05 14:00,No,Badge reader replaced and tested
-WO-1021,Fake Energy Company,Salt Lake City UT,Costco Wholesale,Warehouse Retail,40.7410,-111.9390,Voltage regulator calibration,Grace Hall,Open,P2,2026-06-15 08:00,No,Voltage readings outside expected range
-WO-1022,Fake Energy Company,Provo UT,Walmart Supercenter,Retail,40.2520,-111.6600,Smart meter gateway issue,Eli Morgan,Open,P3,2026-06-15 09:45,No,Gateway stopped sending interval reads
-WO-1023,Fake Energy Company,Ogden UT,Sam's Club,Warehouse Retail,41.2230,-111.9738,Substation camera outage,Grace Hall,In Progress,P4,2026-06-16 12:00,No,Camera feed unavailable from control center
-WO-1024,Fake Energy Company,West Valley City UT,Maverik Fuel Station,Gas Station,40.6916,-112.0011,Emergency lighting inspection,Eli Morgan,Open,P5,2026-06-17 13:15,Yes,Lighting inspection requested by safety team
-WO-1025,Fake Energy Company,Sandy UT,Target Retail Center,Retail,40.5649,-111.8389,Panel temperature warning,Grace Hall,Open,P1,2026-06-18 07:00,Yes,Panel temperature warning requires rapid response
-WO-1026,Fake Energy Company,Miami FL,Costco Wholesale,Warehouse Retail,25.7820,-80.3380,Generator transfer switch test,Sofia Bennett,In Progress,P2,2026-06-18 08:30,No,Transfer switch requires operational test
-WO-1027,Fake Energy Company,Fort Lauderdale FL,Walmart Supercenter,Retail,26.1224,-80.1373,HVAC condensate alarm,Sofia Bennett,Open,P3,2026-06-18 10:30,No,Condensate alarm active in equipment room
-WO-1028,Fake Energy Company,Orlando FL,Sam's Club,Warehouse Retail,28.5383,-81.3792,Network switch reboot loop,Victor Ramos,Open,P1,2026-06-19 06:30,Yes,Switch rebooting repeatedly after power event
-WO-1029,Fake Energy Company,Tampa FL,Chevron Service Station,Gas Station,27.9600,-82.4570,Battery runtime test,Victor Ramos,Closed,P4,2026-06-10 15:00,No,Battery test completed successfully
-WO-1030,Fake Energy Company,Jacksonville FL,Target Retail Center,Retail,30.3328,-81.6556,Security panel communication issue,Miles Carter,Open,P5,2026-06-19 11:45,No,Panel unable to reach monitoring service
-WO-1031,Fake Energy Company,New York NY,Costco Wholesale,Warehouse Retail,40.7851,-73.9683,Rooftop equipment inspection,Amelia Brooks,Open,P2,2026-06-20 08:00,No,Rooftop equipment requires inspection after storm
-WO-1032,Fake Energy Company,Brooklyn NY,Sam's Club,Warehouse Retail,40.6500,-73.9496,Server room humidity alert,Isaac Cohen,In Progress,P1,2026-06-20 09:00,Yes,Humidity alert active in server room
-WO-1033,Fake Energy Company,Queens NY,Walmart Neighborhood Market,Retail,40.7282,-73.7949,Access control controller issue,Amelia Brooks,Open,P3,2026-06-21 10:00,No,Controller intermittently dropping offline
-WO-1034,Fake Energy Company,Bronx NY,BP Service Station,Gas Station,40.8448,-73.8648,Backup power inspection,Isaac Cohen,Open,P4,2026-06-22 12:00,Yes,Backup power inspection requested by site safety lead
-WO-1035,Fake Energy Company,Yonkers NY,Target Retail Center,Retail,40.9312,-73.8988,Meter cabinet door alarm,Amelia Brooks,Closed,P6,2026-06-01 16:00,No,Door sensor replaced and tested
-WO-1036,Fake Energy Company,Atlanta GA,Costco Wholesale,Warehouse Retail,33.8463,-84.3620,Substation relay check,Naomi Price,Open,P1,2026-06-23 07:15,Yes,Relay check requested after abnormal event
-WO-1037,Fake Energy Company,Marietta GA,Walmart Supercenter,Retail,33.9528,-84.5500,Generator battery inspection,Caleb Foster,Open,P2,2026-06-23 09:00,No,Battery inspection needed before weekend
-WO-1038,Fake Energy Company,Alpharetta GA,Sam's Club,Warehouse Retail,34.0754,-84.2941,Network cabinet cleanup,Naomi Price,In Progress,P5,2026-06-24 11:30,No,Cabling cleanup requested after expansion
-WO-1039,Fake Energy Company,Savannah GA,Chevron Service Station,Gas Station,32.0809,-81.0912,Fiber handoff signal issue,Tyler Reed,Open,P3,2026-06-25 13:00,No,Signal levels below provider handoff threshold
-WO-1040,Fake Energy Company,Augusta GA,Target Retail Center,Retail,33.4735,-82.0105,Emergency lighting repair,Tyler Reed,Open,P4,2026-06-26 08:00,Yes,Emergency lighting failed quarterly inspection
-WO-1041,Fake Energy Company,Raleigh NC,Costco Wholesale,Warehouse Retail,35.8390,-78.6780,Transformer oil level inspection,Chris Morgan,Open,P2,2026-06-27 08:00,No,Oil level inspection required after sensor alert
-WO-1042,Fake Energy Company,Durham NC,Sam's Club,Warehouse Retail,35.9940,-78.8986,Control panel communication failure,Nina Patel,In Progress,P1,2026-06-27 09:00,Yes,Control panel stopped reporting to monitoring system
-WO-1043,Fake Energy Company,Cary NC,Walmart Supercenter,Retail,35.7915,-78.7811,Access reader replacement,Chris Morgan,Open,P3,2026-06-28 10:00,No,Reader replacement needed at main entry
-WO-1044,Fake Energy Company,Charlotte NC,Target Retail Center,Retail,35.2271,-80.8431,Generator transfer test,Alex Rivera,Open,P4,2026-06-29 11:30,No,Transfer test scheduled after maintenance window
-WO-1045,Fake Energy Company,Greensboro NC,Sheetz Fuel Station,Gas Station,36.0726,-79.7920,HVAC sensor calibration,Nina Patel,Closed,P5,2026-06-15 14:00,No,Sensor calibration completed successfully
-WO-1046,Fake Energy Company,San Diego CA,Walmart Supercenter,Retail,32.7500,-117.1600,Pad-mounted transformer repair,Carlos Reyes,Open,P1,2026-07-01 07:00,Yes,Transformer repair needed after fault indicator
-WO-1047,Fake Energy Company,Los Angeles CA,Costco Wholesale,Warehouse Retail,34.0407,-118.2468,Backup battery replacement,Maya Torres,Open,P3,2026-07-01 10:00,No,Battery string failed monthly runtime test
-WO-1048,Fake Energy Company,Denver CO,Sam's Club,Warehouse Retail,39.7400,-104.9800,Substation door sensor issue,Owen Miller,In Progress,P5,2026-07-02 09:00,No,Door sensor intermittently reporting open
-WO-1049,Fake Energy Company,Phoenix AZ,Chevron Service Station,Gas Station,33.4484,-112.0740,Panel breaker temperature warning,Jordan Patel,Open,P1,2026-07-02 11:00,Yes,Breaker temperature warning requires same-day response
-WO-1050,Fake Energy Company,Las Vegas NV,Costco Wholesale,Warehouse Retail,36.1699,-115.1398,UPS bypass alarm,Sienna Wright,Open,P2,2026-07-03 08:30,Yes,UPS bypass alarm active after power event
-WO-1051,Fake Energy Company,Salt Lake City UT,Walmart Supercenter,Retail,40.7608,-111.8910,Fiber demarc inspection,Grace Hall,Closed,P6,2026-07-03 13:00,No,Demarc inspection completed and documented
-WO-1052,Fake Energy Company,Miami FL,Shell Service Station,Gas Station,25.7617,-80.1918,Site controller firmware issue,Sofia Bennett,Open,P3,2026-07-04 09:00,No,Firmware issue causing intermittent telemetry gaps
-WO-1053,Fake Energy Company,New York NY,Target Retail Center,Retail,40.7580,-73.9855,Emergency generator fault,Amelia Brooks,In Progress,P1,2026-07-04 12:00,Yes,Generator fault displayed during scheduled test
-WO-1054,Fake Energy Company,Atlanta GA,Sam's Club,Warehouse Retail,33.7490,-84.3880,Battery cabinet ventilation issue,Naomi Price,Open,P2,2026-07-05 07:30,Yes,Ventilation issue reported by site contact
-WO-1055,Fake Energy Company,Raleigh NC,Walmart Supercenter,Retail,35.7796,-78.6382,SCADA communication outage,Chris Morgan,Open,P1,2026-07-05 09:00,Yes,SCADA communication outage requires immediate triage
-WO-1056,Fake Energy Company,Oakland CA,Costco Wholesale,Warehouse Retail,37.8044,-122.2712,Network handoff packet loss,Marcus Lee,Open,P4,2026-07-06 10:00,No,Packet loss observed during provider handoff test
-WO-1057,Fake Energy Company,Boulder CO,King Soopers Fuel Center,Gas Station,40.0150,-105.2705,Voltage monitor replacement,Harper Scott,Closed,P6,2026-07-06 14:00,No,Voltage monitor replaced and verified
-WO-1058,Fake Energy Company,Tempe AZ,Target Retail Center,Retail,33.4255,-111.9400,Meter antenna alignment,Ariana Lopez,Open,P5,2026-07-07 08:00,No,Antenna alignment needed for weak meter signal
-WO-1059,Fake Energy Company,Tampa FL,Costco Wholesale,Warehouse Retail,27.9506,-82.4572,Generator oil pressure alert,Victor Ramos,Open,P2,2026-07-07 11:00,Yes,Oil pressure alert occurred during load test
-WO-1060,Fake Energy Company,Durham NC,Sam's Club,Warehouse Retail,35.9940,-78.8986,Panel labeling audit,Nina Patel,Open,P6,2026-07-08 09:30,No,Panel labels need audit against updated drawings
+work_order_id,customer,site_id,city,state,issue,technician,status,priority,created_date,safety_escalation,notes,estimated_duration
+1001,Fake Energy Company,001,San Diego,CA,Transformer inspection,Carlos Reyes,Open,P1,2026-06-08 08:00,Yes,Customer reported overheating near panel,3
+1002,Fake Energy Company,002,Los Angeles,CA,Battery replacement,Maya Torres,In Progress,P2,2026-06-07 09:00,No,Parts ordered and awaiting delivery,2
+1003,Fake Energy Company,003,San Jose,CA,Network rack repair,Marcus Lee,Open,P3,2026-06-05 10:30,Yes,Site access requires manager approval,2
+1004,Fake Energy Company,004,Sacramento,CA,Generator inspection,Lena Ortiz,Closed,P4,2026-06-01 13:00,No,Inspection completed successfully,2
+1005,Fake Energy Company,005,Oakland,CA,HVAC sensor issue,Marcus Lee,Open,P5,2026-06-09 11:00,No,Technician scheduled for Friday,1
+1006,Fake Energy Company,006,Denver,CO,Backup power alarm,Owen Miller,In Progress,P1,2026-06-06 14:00,Yes,Alarm triggered twice during overnight shift,4
+1007,Fake Energy Company,007,Boulder,CO,Server room temperature alert,Harper Scott,Open,P2,2026-06-10 07:30,Yes,Temperature exceeded threshold for 30 minutes,2
+1008,Fake Energy Company,008,Colorado Springs,CO,POS terminal outage,Owen Miller,Closed,P6,2026-06-03 15:00,No,Terminal replaced and verified,1
+1009,Fake Energy Company,009,Fort Collins,CO,Access control panel issue,Harper Scott,Open,P4,2026-06-09 08:45,No,Security badge reader intermittently failing,1
+1010,Fake Energy Company,010,Aurora,CO,Network switch replacement,Owen Miller,In Progress,P3,2026-06-04 16:00,Yes,Replacement switch staged but change window pending,2
+1011,Fake Energy Company,011,Phoenix,AZ,Substation alarm validation,Jordan Patel,Open,P1,2026-06-11 06:00,Yes,Alarm requires same-day field validation,3
+1012,Fake Energy Company,012,Tempe,AZ,Meter communication failure,Ariana Lopez,Open,P5,2026-06-02 09:15,No,Meter stopped reporting interval data,1
+1013,Fake Energy Company,013,Scottsdale,AZ,Fiber handoff inspection,Jordan Patel,In Progress,P2,2026-06-08 12:00,No,Provider requested verification before cutover,2
+1014,Fake Energy Company,014,Mesa,AZ,Panel labeling correction,Ariana Lopez,Open,P6,2026-06-01 10:00,No,Labels need to match updated site drawings,1
+1015,Fake Energy Company,015,Chandler,AZ,Emergency lighting test,Jordan Patel,Open,P4,2026-06-07 13:30,Yes,Lighting failed during monthly safety check,2
+1016,Fake Energy Company,016,Las Vegas,NV,Relay cabinet inspection,Kai Morgan,Open,P2,2026-06-12 08:00,No,Relay cabinet requires post-storm inspection,2
+1017,Fake Energy Company,017,Henderson,NV,Battery cabinet alarm,Sienna Wright,In Progress,P1,2026-06-12 09:30,Yes,Battery cabinet alarm reported by site contact,3
+1018,Fake Energy Company,018,North Las Vegas,NV,Fiber splice validation,Kai Morgan,Open,P3,2026-06-13 10:00,No,Validation needed after provider maintenance window,2
+1019,Fake Energy Company,019,Reno,NV,Generator coolant warning,Luke Turner,Open,P4,2026-06-14 11:00,Yes,Coolant warning displayed during routine check,2
+1020,Fake Energy Company,020,Sparks,NV,Access badge reader outage,Luke Turner,Closed,P5,2026-06-05 14:00,No,Badge reader replaced and tested,1
+1021,Fake Energy Company,021,Salt Lake City,UT,Voltage regulator calibration,Grace Hall,Open,P2,2026-06-15 08:00,No,Voltage readings outside expected range,2
+1022,Fake Energy Company,022,Provo,UT,Smart meter gateway issue,Eli Morgan,Open,P3,2026-06-15 09:45,No,Gateway stopped sending interval reads,1
+1023,Fake Energy Company,023,Ogden,UT,Substation camera outage,Grace Hall,In Progress,P4,2026-06-16 12:00,No,Camera feed unavailable from control center,2
+1024,Fake Energy Company,024,West Valley City,UT,Emergency lighting inspection,Eli Morgan,Open,P5,2026-06-17 13:15,Yes,Lighting inspection requested by safety team,1
+1025,Fake Energy Company,025,Sandy,UT,Panel temperature warning,Grace Hall,Open,P1,2026-06-18 07:00,Yes,Panel temperature warning requires rapid response,3
+1026,Fake Energy Company,026,Miami,FL,Generator transfer switch test,Sofia Bennett,In Progress,P2,2026-06-18 08:30,No,Transfer switch requires operational test,2
+1027,Fake Energy Company,027,Fort Lauderdale,FL,HVAC condensate alarm,Sofia Bennett,Open,P3,2026-06-18 10:30,No,Condensate alarm active in equipment room,1
+1028,Fake Energy Company,028,Orlando,FL,Network switch reboot loop,Victor Ramos,Open,P1,2026-06-19 06:30,Yes,Switch rebooting repeatedly after power event,4
+1029,Fake Energy Company,029,Tampa,FL,Battery runtime test,Victor Ramos,Closed,P4,2026-06-10 15:00,No,Battery test completed successfully,2
+1030,Fake Energy Company,030,Jacksonville,FL,Security panel communication issue,Miles Carter,Open,P5,2026-06-19 11:45,No,Panel unable to reach monitoring service,1
+1031,Fake Energy Company,031,New York,NY,Rooftop equipment inspection,Amelia Brooks,Open,P2,2026-06-20 08:00,No,Rooftop equipment requires inspection after storm,2
+1032,Fake Energy Company,032,Brooklyn,NY,Server room humidity alert,Isaac Cohen,In Progress,P1,2026-06-20 09:00,Yes,Humidity alert active in server room,3
+1033,Fake Energy Company,033,Queens,NY,Access control controller issue,Amelia Brooks,Open,P3,2026-06-21 10:00,No,Controller intermittently dropping offline,2
+1034,Fake Energy Company,034,Bronx,NY,Backup power inspection,Isaac Cohen,Open,P4,2026-06-22 12:00,Yes,Backup power inspection requested by site safety lead,2
+1035,Fake Energy Company,035,Yonkers,NY,Meter cabinet door alarm,Amelia Brooks,Closed,P6,2026-06-01 16:00,No,Door sensor replaced and tested,1
+1036,Fake Energy Company,036,Atlanta,GA,Substation relay check,Naomi Price,Open,P1,2026-06-23 07:15,Yes,Relay check requested after abnormal event,4
+1037,Fake Energy Company,037,Marietta,GA,Generator battery inspection,Caleb Foster,Open,P2,2026-06-23 09:00,No,Battery inspection needed before weekend,2
+1038,Fake Energy Company,038,Alpharetta,GA,Network cabinet cleanup,Naomi Price,In Progress,P5,2026-06-24 11:30,No,Cabling cleanup requested after expansion,1
+1039,Fake Energy Company,039,Savannah,GA,Fiber handoff signal issue,Tyler Reed,Open,P3,2026-06-25 13:00,No,Signal levels below provider handoff threshold,2
+1040,Fake Energy Company,040,Augusta,GA,Emergency lighting repair,Tyler Reed,Open,P4,2026-06-26 08:00,Yes,Emergency lighting failed quarterly inspection,2
+1041,Fake Energy Company,041,Raleigh,NC,Transformer oil level inspection,Chris Morgan,Open,P2,2026-06-27 08:00,No,Oil level inspection required after sensor alert,2
+1042,Fake Energy Company,042,Durham,NC,Control panel communication failure,Nina Patel,In Progress,P1,2026-06-27 09:00,Yes,Control panel stopped reporting to monitoring system,4
+1043,Fake Energy Company,043,Cary,NC,Access reader replacement,Chris Morgan,Open,P3,2026-06-28 10:00,No,Reader replacement needed at main entry,1
+1044,Fake Energy Company,044,Charlotte,NC,Generator transfer test,Alex Rivera,Open,P4,2026-06-29 11:30,No,Transfer test scheduled after maintenance window,2
+1045,Fake Energy Company,045,Greensboro,NC,HVAC sensor calibration,Nina Patel,Closed,P5,2026-06-15 14:00,No,Sensor calibration completed successfully,1
+1046,Fake Energy Company,046,San Diego,CA,Pad-mounted transformer repair,Carlos Reyes,Open,P1,2026-07-01 07:00,Yes,Transformer repair needed after fault indicator,4
+1047,Fake Energy Company,047,Los Angeles,CA,Backup battery replacement,Maya Torres,Open,P3,2026-07-01 10:00,No,Battery string failed monthly runtime test,2
+1048,Fake Energy Company,048,Denver,CO,Substation door sensor issue,Owen Miller,In Progress,P5,2026-07-02 09:00,No,Door sensor intermittently reporting open,1
+1049,Fake Energy Company,049,Phoenix,AZ,Panel breaker temperature warning,Jordan Patel,Open,P1,2026-07-02 11:00,Yes,Breaker temperature warning requires same-day response,3
+1050,Fake Energy Company,050,Las Vegas,NV,UPS bypass alarm,Sienna Wright,Open,P2,2026-07-03 08:30,Yes,UPS bypass alarm active after power event,3
+1051,Fake Energy Company,051,Salt Lake City,UT,Fiber demarc inspection,Grace Hall,Closed,P6,2026-07-03 13:00,No,Demarc inspection completed and documented,1
+1052,Fake Energy Company,052,Miami,FL,Site controller firmware issue,Sofia Bennett,Open,P3,2026-07-04 09:00,No,Firmware issue causing intermittent telemetry gaps,2
+1053,Fake Energy Company,053,New York,NY,Emergency generator fault,Amelia Brooks,In Progress,P1,2026-07-04 12:00,Yes,Generator fault displayed during scheduled test,4
+1054,Fake Energy Company,054,Atlanta,GA,Battery cabinet ventilation issue,Naomi Price,Open,P2,2026-07-05 07:30,Yes,Ventilation issue reported by site contact,2
+1055,Fake Energy Company,055,Raleigh,NC,SCADA communication outage,Chris Morgan,Open,P1,2026-07-05 09:00,Yes,SCADA communication outage requires immediate triage,4
+1056,Fake Energy Company,056,Oakland,CA,Network handoff packet loss,Marcus Lee,Open,P4,2026-07-06 10:00,No,Packet loss observed during provider handoff test,1
+1057,Fake Energy Company,057,Boulder,CO,Voltage monitor replacement,Harper Scott,Closed,P6,2026-07-06 14:00,No,Voltage monitor replaced and verified,1
+1058,Fake Energy Company,058,Tempe,AZ,Meter antenna alignment,Ariana Lopez,Open,P5,2026-07-07 08:00,No,Antenna alignment needed for weak meter signal,1
+1059,Fake Energy Company,059,Tampa,FL,Generator oil pressure alert,Victor Ramos,Open,P2,2026-07-07 11:00,Yes,Oil pressure alert occurred during load test,2
+1060,Fake Energy Company,060,Durham,NC,Panel labeling audit,Nina Patel,Open,P6,2026-07-08 09:30,No,Panel labels need audit against updated drawings,1
