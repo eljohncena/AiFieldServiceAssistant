@@ -7,6 +7,11 @@ from models import Base
 
 import pandas as pd
 
+from models import WorkOrder, Technician, Site
+from database import get_db
+from sqlalchemy.orm import Session
+from fastapi import FastAPI, Query, Depends, HTTPException
+
 Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
@@ -187,3 +192,13 @@ def get_technician(technician_id: int):
         if technician["technician_id"] == technician_id:
             return technician
     return {"error": "Technician not found"}
+
+
+# Test endpoint for database
+@app.get("/db-test")
+def test_db(db: Session = Depends(get_db)):
+    return {
+        "work_orders": db.query(WorkOrder).count(),
+        "technicians": db.query(Technician).count(),
+        "sites": db.query(Site).count()
+    }
