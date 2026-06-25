@@ -120,7 +120,7 @@ def seed_work_orders(db, data_dir):
             created_date=row["created_date"],
             safety_escalation=row["safety_escalation"],
             notes=row["notes"],
-            estimated_hours=float(row["estimated_hours"]),
+            estimated_duration=float(row["estimated_hours"]),
             due_date=due_date,
             sla=sla
         )

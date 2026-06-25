@@ -52,7 +52,7 @@ class WorkOrder(Base):
     created_date = Column(String)
     notes = Column(String)
     safety_escalation = Column(String)
-    estimated_hours = Column(Float)
+    estimated_duration = Column(Float)
 
 class Assignment(Base):
     __tablename__ = "assignments"
