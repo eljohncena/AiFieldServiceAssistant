@@ -1,13 +1,8 @@
-from database import engine
-from models import Base
-
-from models import WorkOrder, Technician, Site
-from database import get_db
+from database import engine, get_db
+from models import Base, WorkOrder, Technician, Site, Assignment
 from sqlalchemy.orm import Session
 from fastapi import FastAPI, Query, Depends, HTTPException
-
 from schemas import AssignmentCreate
-from models import Assignment
 
 Base.metadata.create_all(bind=engine)
 app = FastAPI()
