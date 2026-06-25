@@ -2,6 +2,8 @@ from sqlalchemy import create_engine
 from pathlib import Path
 from sqlalchemy.orm import sessionmaker, DeclarativeBase
 
+# database location and connection
+
 # places database in project root
 baseDir = Path(__file__).parent.parent
 databaseURL = f"sqlite:///{baseDir}/fieldservice.db"

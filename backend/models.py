@@ -2,6 +2,9 @@ from sqlalchemy import Column, Integer, String, Float, ForeignKey
 from sqlalchemy.orm import relationship
 from database import Base
 
+
+# This defines what gets stored in the db
+
 class Technician(Base):
     __tablename__ = "technicians"
     id = Column(Integer, primary_key=True, index=True)

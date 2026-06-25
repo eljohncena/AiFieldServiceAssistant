@@ -7,6 +7,9 @@ from models import Base, Technician, Site, WorkOrder
 from datetime import datetime, timedelta
 import pandas as pd
 
+
+# one time use to generate db
+
 DATE_FORMAT = "%Y-%m-%d %H:%M"
 
 SLA_RULES = {
