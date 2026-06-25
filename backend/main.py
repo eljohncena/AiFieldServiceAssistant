@@ -1,5 +1,3 @@
-from datetime import datetime, timedelta
-
 from database import engine
 from models import Base
 
@@ -13,18 +11,6 @@ from models import Assignment
 
 Base.metadata.create_all(bind=engine)
 app = FastAPI()
-
-dateFormat = "%Y-%m-%d %H:%M"
-
-# SLA rules for different priorities.
-slaRules = {
-    "P1": timedelta(hours=4),
-    "P2": timedelta(hours=24),
-    "P3": timedelta(hours=48),
-    "P4": timedelta(days=5),
-    "P5": timedelta(days=10),
-    "P6": timedelta(days=60),
-    }
 
 # End point to display the home page.
 @app.get("/")
@@ -76,17 +62,17 @@ def work_orders(
 # End point to display the dashboard summary.
 @app.get("/dashboard")
 def dashboard(db: Session = Depends(get_db)):
-    work_orders = db.query(WorkOrder).all()
+    all_orders = db.query(WorkOrder).all()
 
     return {
-        "total_work_orders": len(work_orders),
-        "open_work_orders": sum(1 for wo in work_orders if wo.status == "Open"),
-        "in_progress_work_orders": sum(1 for wo in work_orders if wo.status == "In Progress"),
-        "closed_work_orders": sum(1 for wo in work_orders if wo.status == "Closed"),
-        "overdue_work_orders": sum(1 for wo in work_orders if wo.sla == "Overdue"),
-        "due_soon_work_orders": sum(1 for wo in work_orders if wo.sla == "Due Soon"),
-        "safety_escaation": sum(1 for wo in work_orders if wo.safety_escalation == "Yes"),
-        "p1_orders": sum(1 for wo in work_orders if wo.priority == "P1"),
+        "total_work_orders": len(all_orders),
+        "open_work_orders": sum(1 for wo in all_orders if wo.status == "Open"),
+        "in_progress_work_orders": sum(1 for wo in all_orders if wo.status == "In Progress"),
+        "closed_work_orders": sum(1 for wo in all_orders if wo.status == "Closed"),
+        "overdue_work_orders": sum(1 for wo in all_orders if wo.sla == "Overdue"),
+        "due_soon_work_orders": sum(1 for wo in all_orders if wo.sla == "Due Soon"),
+        "safety_escalation": sum(1 for wo in all_orders if wo.safety_escalation == "Yes"),
+        "p1_orders": sum(1 for wo in all_orders if wo.priority == "P1"),
     }
 
 # End point to display a specific work order.
@@ -94,7 +80,7 @@ def dashboard(db: Session = Depends(get_db)):
 def get_work_order(work_order_id: str, db: Session = Depends(get_db)):
     work_order = db.query(WorkOrder).filter(WorkOrder.work_order_id == work_order_id).first()
 
-    if not work_orders:
+    if not work_order:
         raise HTTPException(status_code=404, detail="Work order not found")
 
     return work_order
@@ -123,11 +109,6 @@ def test_db(db: Session = Depends(get_db)):
         "sites": db.query(Site).count()
     }
 
-
-class Assignemtn:
-    pass
-
-
 @app.post("/assignments")
 def create_assignment(assignment: AssignmentCreate, db: Session = Depends(get_db)):
 
@@ -146,17 +127,17 @@ def create_assignment(assignment: AssignmentCreate, db: Session = Depends(get_db
     site_conflict = db.query(Assignment).filter(Assignment.site_id == assignment.site_id, Assignment.scheduled_date == assignment.scheduled_date).first()
 
     # Checks if site is already assigned to another technician
-    if not site_conflict:
+    if site_conflict:
         raise HTTPException(status_code=400, detail=f"Site {assignment.site_id} is already assigned to {Assignment.technician} on {assignment.scheduled_date}")
 
-    existing_assignments = db.query(Assignemtn).filter(Assignment.technician_id == assignment.technician_id, Assignment.scheduled_date == assignment.scheduled_date).first()
+    existing_assignments = db.query(Assignment).filter(Assignment.technician_id == assignment.technician_id, Assignment.scheduled_date == assignment.scheduled_date).all()
 
     # New work order duration
     committed_hours = 0
     for existing_assignment in existing_assignments:
         wo = db.query(WorkOrder).filter(WorkOrder.work_order_id == existing_assignment.work_order_id).first()
         if wo:
-            committed_hours += wo.estimated_hours
+            committed_hours += wo.estimated_duration
 
     new_work_order = db.query(WorkOrder).filter(WorkOrder.work_order_id == assignment.work_order_id).first()
 
@@ -165,7 +146,7 @@ def create_assignment(assignment: AssignmentCreate, db: Session = Depends(get_db
 
 
     # Check if the new work order will put the technician over the 8 hour limit
-    projected_hours = committed_hours + new_work_order.estimated_hours
+    projected_hours = committed_hours + new_work_order.estimated_duration
 
     if projected_hours > 8:
         raise HTTPException(status_code=400, detail=f"Work order would put {tech.technician} over the project limit of 8 hours")
@@ -191,3 +172,20 @@ def create_assignment(assignment: AssignmentCreate, db: Session = Depends(get_db
         "commited_hours": round(committed_hours, 2),
 
     }
+
+# Get assignment endpoint
+@app.get("/assignments")
+def get_assignment(scheduled_date: str | None = Query(default=None),
+                   technician_id: int | None = Query(default=None),
+                    site_id: str | None = Query(default=None),
+                    db: Session = Depends(get_db)):
+
+    query = db.query(Assignment)
+
+    if scheduled_date:
+        query = query.filter(Assignment.scheduled_date == scheduled_date)
+    if technician_id:
+        query = query.filter(Assignment.technician_id == technician_id)
+    if site_id:
+        query = query.filter(Assignment.site_id == site_id)
+    return query.all()
