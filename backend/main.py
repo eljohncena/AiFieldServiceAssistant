@@ -1,23 +1,18 @@
-from fastapi import FastAPI, Query
-from pathlib import Path
 from datetime import datetime, timedelta
 
 from database import engine
 from models import Base
-
-import pandas as pd
 
 from models import WorkOrder, Technician, Site
 from database import get_db
 from sqlalchemy.orm import Session
 from fastapi import FastAPI, Query, Depends, HTTPException
 
+from schemas import AssignmentCreate
+from models import Assignment
+
 Base.metadata.create_all(bind=engine)
 app = FastAPI()
-
-
-dataFile = Path(__file__).parent.parent / "data" / "work_orders.csv"
-technicianFile = Path(__file__).parent.parent / "data" / "technicians.csv"
 
 dateFormat = "%Y-%m-%d %H:%M"
 
@@ -29,81 +24,6 @@ slaRules = {
     "P4": timedelta(days=5),
     "P5": timedelta(days=10),
     "P6": timedelta(days=60),
-    }
-
-# Function to calculate the due date based on the priority.
-def calculateDueDate(created_date: str, priority: str) ->str:
-    created = datetime.strptime(created_date, dateFormat)
-    slaDuration = slaRules[priority]
-    dueDate = created + slaDuration
-    return dueDate.strftime(dateFormat)
-
-# Function to calculate the SLA status.
-def calculateSla(status: str, dueDate: str) -> str:
-    if status == "Closed":
-        return "Closed"
-    now = datetime.now()
-    due = datetime.strptime(dueDate, dateFormat)
-    timeUntilDue = due - now
-
-    if now > due:
-        return "Overdue"
-
-    if timeUntilDue <= timedelta(hours=24):
-        return "Due Soon"
-    return "On Track"
-
-# Function to load all work orders from the csv file. Force pandas to read work_order_id and site_id as str
-def loadWorkOrders() -> list[dict]:
-    df = pd.read_csv(dataFile, dtype={"work_order_id": str, "site_id": str})
-    workOrders = df.to_dict(orient="records")
-
-    for workOrder in workOrders:
-        dueDate = calculateDueDate(workOrder["created_date"], workOrder["priority"])
-        workOrder["due_date"] = dueDate
-        workOrder["sla"] = calculateSla(workOrder["status"], dueDate)
-
-    return workOrders
-
-# Function to build the dashboard summary.
-def buildDashboardSummary() -> dict:
-    work_orders = loadWorkOrders()
-    totalWorkOrders = len(work_orders)
-    openWorkOrders = 0
-    inProgressWorkOrders = 0
-    closedWorkOrders = 0
-    overdueWorkOrders = 0
-    dueSoonWorkOrders = 0
-    safetyEscalation = 0
-    p1Orders = 0
-
-    for workOrder in work_orders:
-        if workOrder["status"] == "Open":
-            openWorkOrders += 1
-        if workOrder["status"] == "In Progress":
-            inProgressWorkOrders += 1
-        if workOrder["status"] == "Closed":
-            closedWorkOrders += 1
-        if workOrder["sla"] == "Overdue":
-            overdueWorkOrders += 1
-        if workOrder["sla"] == "Due Soon":
-            dueSoonWorkOrders += 1
-        if workOrder["priority"] == "P1":
-            p1Orders += 1
-        if workOrder["safety_escalation"] == "Yes":
-            safetyEscalation += 1
-
-    return {
-
-        "total_work_orders": totalWorkOrders,
-        "open_work_orders": openWorkOrders,
-        "in_progress_work_orders": inProgressWorkOrders,
-        "closed_work_orders": closedWorkOrders,
-        "overdue_work_orders": overdueWorkOrders,
-        "due_soon_work_orders": dueSoonWorkOrders,
-        "safety_escalation": safetyEscalation,
-        "p1_orders": p1Orders,
-
     }
 
 # End point to display the home page.
@@ -130,69 +50,69 @@ def work_orders(
     sla: str | None = Query(default=None),
     safety_escalation: str | None = Query(default=None),
     site_id: str | None = Query(default=None),
+    db: Session = Depends(get_db)
+
 ):
-    workOrders = loadWorkOrders()  #loads all work orders from csv, then filters. Will switch to a database later.
-
-    # Filters will only run if the user provides a value. e.g., /work-orders?status=Open&priority=P1&location=Raleigh
+    query = db.query(WorkOrder)
     if status:
-        workOrders = [workOrder for workOrder in workOrders if workOrder["status"].lower() == status.lower()]
-
+        query = query.filter(WorkOrder.status.ilike(f"%{status}%"))
     if priority:
-        workOrders = [workOrder for workOrder in workOrders if workOrder["priority"].lower() == priority.lower()]
-
-    # Filter by technician, city and state with partial match
+        query = query.filter(WorkOrder.priority.ilike(f"%{priority}%"))
     if city:
-        workOrders = [workOrder for workOrder in workOrders if city.lower() in workOrder["city"].lower()]
+        query = query.filter(WorkOrder.city.ilike(f"%{city}%"))
     if state:
-        workOrders = [workOrder for workOrder in workOrders if state.lower() in workOrder["state"].lower()]
-
+        query = query.filter(WorkOrder.state.ilike(f"%{state}%"))
     if technician:
-        workOrders = [workOrder for workOrder in workOrders if technician.lower() in workOrder["technician"].lower()]
-
+        query = query.filter(WorkOrder.technician.ilike(f"%{technician}%"))
     if sla:
-        workOrders = [workOrder for workOrder in workOrders if workOrder["sla"].lower() == sla.lower()]
-
+        query = query.filter(WorkOrder.sla.ilike(f"%{sla}%"))
     if safety_escalation:
-        workOrders = [workOrder for workOrder in workOrders if workOrder["safety_escalation"].lower() == safety_escalation.lower()]
-
+        query = query.filter(WorkOrder.safety_escalation.ilike(f"%{safety_escalation}%"))
     if site_id:
-        workOrders = [workOrder for workOrder in workOrders if site_id.strip().lower() in str(workOrder["site_id"]).strip().lower()]
+        query = query.filter(WorkOrder.site_id.ilike(f"%{site_id}%"))
+    return query.all()
 
-    return workOrders
 
 # End point to display the dashboard summary.
 @app.get("/dashboard")
-def dashboard():
-    return buildDashboardSummary()
+def dashboard(db: Session = Depends(get_db)):
+    work_orders = db.query(WorkOrder).all()
+
+    return {
+        "total_work_orders": len(work_orders),
+        "open_work_orders": sum(1 for wo in work_orders if wo.status == "Open"),
+        "in_progress_work_orders": sum(1 for wo in work_orders if wo.status == "In Progress"),
+        "closed_work_orders": sum(1 for wo in work_orders if wo.status == "Closed"),
+        "overdue_work_orders": sum(1 for wo in work_orders if wo.sla == "Overdue"),
+        "due_soon_work_orders": sum(1 for wo in work_orders if wo.sla == "Due Soon"),
+        "safety_escaation": sum(1 for wo in work_orders if wo.safety_escalation == "Yes"),
+        "p1_orders": sum(1 for wo in work_orders if wo.priority == "P1"),
+    }
 
 # End point to display a specific work order.
 @app.get("/work-orders/{work_order_id}")
-def get_work_order(work_order_id: str):
-    work_orders = loadWorkOrders()
+def get_work_order(work_order_id: str, db: Session = Depends(get_db)):
+    work_order = db.query(WorkOrder).filter(WorkOrder.work_order_id == work_order_id).first()
 
-    for work_order in work_orders:
-        if work_order["work_order_id"].lower() == work_order_id.lower():
-            return work_order
+    if not work_orders:
+        raise HTTPException(status_code=404, detail="Work order not found")
 
-    return {"error": "Work order not found"}
-
+    return work_order
 
 # End point to display all technicians.
 @app.get("/technicians")
-def get_technicians():
-    df = pd.read_csv(technicianFile)
-    return df.to_dict(orient="records")
+def get_technicians(db: Session = Depends(get_db)):
+    return db.query(Technician).all()
 
 #Display a specific technician.
 @app.get("/technicians/{technician_id}")
-def get_technician(technician_id: int):
-    technicians = get_technicians()
+def get_technician(technician_id: int, db: Session = Depends(get_db)):
+    tech = db.query(Technician).filter(Technician.technician_id == technician_id).first()
 
-    for technician in technicians:
-        if technician["technician_id"] == technician_id:
-            return technician
-    return {"error": "Technician not found"}
+    if not tech:
+        raise HTTPException(status_code=404, detail="Technician not found")
 
+    return tech
 
 # Test endpoint for database
 @app.get("/db-test")
@@ -201,4 +121,73 @@ def test_db(db: Session = Depends(get_db)):
         "work_orders": db.query(WorkOrder).count(),
         "technicians": db.query(Technician).count(),
         "sites": db.query(Site).count()
+    }
+
+
+class Assignemtn:
+    pass
+
+
+@app.post("/assignments")
+def create_assignment(assignment: AssignmentCreate, db: Session = Depends(get_db)):
+
+    # Checks if technician exists
+    tech = db.query(Technician).filter(Technician.technician_id == assignment.technician_id).first()
+
+    if not tech:
+        raise HTTPException(status_code=404, detail="Technician not found")
+
+    # Checks if site exists
+    site = db.query(Site).filter(Site.site_id == assignment.site_id).first()
+
+    if not site:
+        raise HTTPException(status_code=404, detail="Site not found")
+
+    site_conflict = db.query(Assignment).filter(Assignment.site_id == assignment.site_id, Assignment.scheduled_date == assignment.scheduled_date).first()
+
+    # Checks if site is already assigned to another technician
+    if not site_conflict:
+        raise HTTPException(status_code=400, detail=f"Site {assignment.site_id} is already assigned to {Assignment.technician} on {assignment.scheduled_date}")
+
+    existing_assignments = db.query(Assignemtn).filter(Assignment.technician_id == assignment.technician_id, Assignment.scheduled_date == assignment.scheduled_date).first()
+
+    # New work order duration
+    committed_hours = 0
+    for existing_assignment in existing_assignments:
+        wo = db.query(WorkOrder).filter(WorkOrder.work_order_id == existing_assignment.work_order_id).first()
+        if wo:
+            committed_hours += wo.estimated_hours
+
+    new_work_order = db.query(WorkOrder).filter(WorkOrder.work_order_id == assignment.work_order_id).first()
+
+    if not new_work_order:
+        raise HTTPException(status_code=404, detail="Work order not found")
+
+
+    # Check if the new work order will put the technician over the 8 hour limit
+    projected_hours = committed_hours + new_work_order.estimated_hours
+
+    if projected_hours > 8:
+        raise HTTPException(status_code=400, detail=f"Work order would put {tech.technician} over the project limit of 8 hours")
+
+    # If passes all checks
+    new_assignment = Assignment(
+        technician_id = assignment.technician_id,
+        site_id = assignment.site_id,
+        work_order_id = assignment.work_order_id,
+        scheduled_date = assignment.scheduled_date
+    )
+
+    db.add(new_assignment)
+    db.commit()
+    db.refresh(new_assignment)
+
+    return {
+        "message": "Assignment created successfully",
+        "assignment": new_assignment.id,
+        "technician": tech.technician,
+        "site": site.site_name,
+        "scheduled_date": new_assignment.scheduled_date,
+        "commited_hours": round(committed_hours, 2),
+
     }
