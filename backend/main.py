@@ -123,7 +123,7 @@ def create_assignment(assignment: AssignmentCreate, db: Session = Depends(get_db
 
     # Checks if site is already assigned to another technician
     if site_conflict:
-        raise HTTPException(status_code=400, detail=f"Site {assignment.site_id} is already assigned to {Assignment.technician} on {assignment.scheduled_date}")
+        raise HTTPException(status_code=400, detail=f"Site {assignment.site_id} is already assigned to {site_conflict.technician.technician} on {assignment.scheduled_date}")
 
     existing_assignments = db.query(Assignment).filter(Assignment.technician_id == assignment.technician_id, Assignment.scheduled_date == assignment.scheduled_date).all()
 
