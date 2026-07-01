@@ -58,7 +58,7 @@ class Assignment(Base):
     __tablename__ = "assignments"
 
     id = Column(Integer, primary_key=True, index=True)
-    technician_id = Column(Integer, ForeignKey("technicians.technicians.id"))
+    technician_id = Column(Integer, ForeignKey("technicians.technician_id"))
     site_id = Column(String, ForeignKey("sites.site_id"))
     work_order_id = Column(String, ForeignKey("work_orders.work_order_id"))
     status = Column(String, default="Scheduled")
