@@ -3,6 +3,7 @@ from models import Base, WorkOrder, Technician, Site, Assignment
 from sqlalchemy.orm import Session
 from fastapi import FastAPI, Query, Depends, HTTPException
 from schemas import AssignmentCreate
+from services import get_route_leg
 
 Base.metadata.create_all(bind=engine)
 app = FastAPI()
@@ -184,3 +185,26 @@ def get_assignment(scheduled_date: str | None = Query(default=None),
     if site_id:
         query = query.filter(Assignment.site_id == site_id)
     return query.all()
+
+@app.get("/test_route")
+def test_route(technician_id: int, site_id: str, db: Session = Depends(get_db)):
+
+    tech = db.query(Technician).filter(Technician.technician_id == technician_id).first()
+
+    if not tech:
+        raise HTTPException(status_code=404, detail="Technician not found")
+
+    site = db.query(Site).filter(Site.site_id == site_id).first()
+
+    if not site:
+        raise HTTPException(status_code=404, detail="Site not found")
+
+    result = get_route_leg(tech.home_lat, tech.home_lng, site.lat, site.lng, db)
+
+    return {
+        "technician": tech.technician,
+        "from": f"{tech.home_city}, {tech.home_state}",
+        "to": f"{site.site_name} ({site.city}, {site.state})",
+        "miles": result["miles"],
+        "duration_minutes": result["duration_minutes"],
+    }
